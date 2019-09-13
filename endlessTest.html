@@ -1,0 +1,121 @@
+<html>
+<head>
+    <style>
+        body, html {
+        margin: 0;
+        }
+
+        #a {
+        position:absolute;
+        margin:auto; 
+        top:0;bottom:0;left:0;right:0;
+        height:100vh
+        }
+    </style>
+</head>
+<body>
+    <canvas id="a"></canvas>
+    <script>
+    //Defining a triangle, with its three vertexs, each one by its coordinates [x,y]
+    let VertexA= [735,1270]
+    let VertexB= [0,0]
+    let VertexC= [1470,0]
+    let triangle = [VertexA,VertexB,VertexC]
+    
+    //this function returns the coordinates of one of those vertexs, picked at random
+    function randomVert() {
+    let randomVertex = triangle[Math.floor(Math.random()*triangle.length)];
+    return randomVertex
+    }
+    
+    //this function defines the middle point between two given points
+    function middlePointF(point1, point2) {
+    let xMiddle = (( point1[0] - point2[0])/2)+ point2[0]
+    let yMiddle = (( point1[1] - point2[1])/2)+ point2[1]
+    let middlePoint = [xMiddle,yMiddle]
+    return middlePoint
+    }
+    
+    // CONSTRUCTING THE FRACTAL TRIANGLE
+    // pick the a random 'First Point', defined by it coordinates
+    let anyPoint= [500,500]
+    
+    // pick a random vertex of the triangle previously defined
+    let firstRandomVertex =randomVert()
+    
+    // find the middle point between the chosen vertex and that 'First Point', and push it into an array
+    let allPoints = []
+    allPoints.push(middlePointF(anyPoint, firstRandomVertex))
+    
+    // define the middle the point between the point pushed before and a random vertex of our triangle
+    allPoints.push(middlePointF(allPoints[0], randomVert()))
+    
+    // creates 100 points and pushes them into an array
+    function points() {
+        for (var i = 0; i < 1000; i++) {
+            allPoints.push(middlePointF(allPoints[allPoints.length - 1], randomVert()))
+        }
+    }
+    //sets canvas resolution
+    function initCanvas() {
+        $('#a').attr("width", 1600);
+        $('#a').attr("height", 1600);
+    }
+    initCanvas()
+
+
+    function animate() {
+
+        for (var i = 0; i <= allPoints.length - 1; i++) {
+            // allPoints[i][0] = Math.pow(allPoints[i][0], 1.001);
+            // allPoints[i][1] = Math.pow(allPoints[i][1], 1.001)
+            allPoints[i][0] = allPoints[i][0] + 10
+            allPoints[i][1] = allPoints[i][1] + 10
+
+        }
+    }
+
+    function animate2() {
+
+        // VertexA[1] =  Math.pow(VertexA[1], 1.001)
+        // VertexA[0] = Math.pow(VertexA[0], 1.001)
+        // // // VertexB[1] = VertexB[1]*1.10
+        // // // // VertexB[0] = VertexB[0]*1.10
+        // VertexC[1] =  Math.pow(VertexC[1], 1.001)
+        // VertexC[0] = Math.pow(VertexC[0], 1.001)
+        VertexA[1] = VertexA[1] + 10
+        VertexA[0] = VertexA[0] + 10
+        VertexB[1] = VertexB[1] + 10
+        VertexB[0] = VertexB[0] + 10
+        VertexC[1] = VertexC[1] + 10
+        VertexC[0] = VertexC[0] + 10
+
+    }
+
+    //draws the points
+    function draw() {
+        var ctx = document.getElementById('a').getContext("2d");
+        for (var i = 0; i <= allPoints.length - 1; i++) {
+            ctx.beginPath();
+            ctx.arc(allPoints[i][0], allPoints[i][1], 3, 0, 2 * Math.PI);
+            ctx.fill()
+        }
+    }
+
+    //iterates every half second
+    setInterval(function () {
+        if (allPoints.length < 50000) {
+            var ctx = document.getElementById('a').getContext("2d");
+            ctx.clearRect(0, 0, 1600, 1600);
+            animate()
+            animate2()
+            points()
+
+            draw()
+        }
+    }, 500);
+
+    </script>
+</body>
+
+</html>
