@@ -26,28 +26,28 @@
     <canvas id="a"></canvas>
     <script>
     //Defining a triangle, with its three vertexs, each one by its coordinates [x,y]
-    let VertexA= [735,1270]
-    let VertexB= [0,0]
-    let VertexC= [1470,0]
+    let VertexA= [735,1370]
+    let VertexB= [0,100]
+    let VertexC= [1570,100]
     let triangle = [VertexA,VertexB,VertexC]
     
     //this function returns the coordinates of one of those vertexs, picked at random
     function randomVert() {
-    let randomVertex = triangle[Math.floor(Math.random()*triangle.length)];
-    return randomVertex
+        let randomVertex = triangle[Math.floor(Math.random()*triangle.length)];
+        return randomVertex
     }
     
     //this function defines the middle point between two given points
     function middlePointF(point1, point2) {
-    let xMiddle = (( point1[0] - point2[0])/2)+ point2[0]
-    let yMiddle = (( point1[1] - point2[1])/2)+ point2[1]
-    let middlePoint = [xMiddle,yMiddle]
-    return middlePoint
+        let xMiddle = (( point1[0] - point2[0])/2)+ point2[0]
+        let yMiddle = (( point1[1] - point2[1])/2)+ point2[1]
+        let middlePoint = [xMiddle,yMiddle]
+        return middlePoint
     }
     
     // CONSTRUCTING THE FRACTAL TRIANGLE
     // pick the a random 'First Point', defined by it coordinates
-    let anyPoint= [500,500]
+    let anyPoint= VertexA
     
     // pick a random vertex of the triangle previously defined
     let firstRandomVertex =randomVert()
@@ -116,8 +116,8 @@
         if (allPoints.length < 50000) {
             var ctx = document.getElementById('a').getContext("2d");
             ctx.clearRect(0, 0, 1600, 1600);
-            animate()
-            animate2()
+            // animate()
+            // animate2()
             points()
 
             draw()
