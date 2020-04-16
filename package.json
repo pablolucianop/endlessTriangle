@@ -1,0 +1,25 @@
+{
+  "name": "endlessTriangle",
+  "version": "1.0.0",
+  "description": "\"# endlessTriangle\"",
+  "main": "endlessTriangle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablolucianop/endlessTriangle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pablolucianop/endlessTriangle/issues"
+  },
+  "homepage": "https://github.com/pablolucianop/endlessTriangle#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
+  }
+}
